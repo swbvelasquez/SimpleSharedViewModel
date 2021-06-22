@@ -2,6 +2,8 @@ package com.tutoriales.simplesharedviewmodel;
 
 import android.os.Bundle;
 
+import androidx.activity.OnBackPressedCallback;
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -28,10 +30,23 @@ public class SecondFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        /*
+        //Para personalizar las acciones del back press, sin embargo genera una llamada adicional, revisar en que casos usar
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                sharedViewModel.setCountry(binding.editTextCountry.getText().toString());
+                setEnabled(false);
+            }
+        };
+
+        //si usas viewLifeOwner se va a estar llamando a cada rato, por eso solo usamos this para indicar que
+        requireActivity().getOnBackPressedDispatcher().addCallback(this,callback);
+        */
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentSecondBinding.inflate(inflater,container,false);
 
